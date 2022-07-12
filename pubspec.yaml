@@ -1,0 +1,62 @@
+name: nsu_cab
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: 3.0.4
+
+dependencies:
+  bloc: ^8.0.3
+  cached_network_image: ^3.2.1
+  dio: ^4.0.6
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.1
+  flutter_dotenv: ^5.0.2
+  flutter_localizations:
+    sdk: flutter
+  flutter_screenutil: ^5.5.3+2
+  flutter_svg: ^1.1.1+1
+  get_it: ^7.2.0
+  google_nav_bar: ^5.0.6
+  intl: ^0.17.0
+  shared_preferences: ^2.0.15
+
+dev_dependencies:
+  bloc_test: ^9.0.3
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.1.11
+  json_serializable: ^6.3.0
+  mocktail: ^0.3.0
+  very_good_analysis: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - .env
+    - assets/
+    - assets/images/
+    - assets/images/svgs/
+    - assets/images/emoji/
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Montserrat-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat-Regular.ttf
+          weight: 400
