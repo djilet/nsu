@@ -8,12 +8,12 @@ import 'package:nsu_cab/services/keycloak/keycloak.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final keycloak = Keycloak();
-
+  final Keycloak keycloak;
   final GlobalKey<NavigatorState> navigatorKey;
 
   LoginCubit({
     required this.navigatorKey,
+    required this.keycloak,
   }) : super(LoginState());
 
   FutureOr<void> onLoginChanged(String login) async {
@@ -26,10 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   FutureOr<void> onButtonPressed() async {
     try {
-      // emit(state.copyWith(isFailure: true));
-      // print(navigatorKey);
-      // await keycloak.login(state.login, state.pass);
-
+      // await keycloak.getTokens(state.login, state.pass);
       navigatorKey.currentState!.pushNamed(Routes.selectRole);
     } catch (e) {
       print(e.toString());

@@ -53,7 +53,7 @@ class NsuCabThemes {
             borderRadius: BorderRadius.circular(5.r),
           ),
         ),
-        alignment: Alignment.center,
+        // alignment: Alignment.center,
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.disabled))
@@ -61,15 +61,16 @@ class NsuCabThemes {
             return NsuCabLightColors.greenColor;
           },
         ),
+        padding:
+            MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 10.h)),
+        // minimumSize: MaterialStateProperty.all(Size(double.infinity, 20.h)),
         overlayColor:
             MaterialStateProperty.all<Color>(NsuCabCommonColors.greenColor1),
         shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-        maximumSize: MaterialStateProperty.all(Size(double.infinity, 40.h)),
-        minimumSize: MaterialStateProperty.all(Size(double.infinity, 40.h)),
         textStyle: MaterialStateProperty.all(
           TextStyle(
-            fontSize: 14.sm, // mb change on sp
+            fontSize: 2.sp, // mb change on sp
             fontWeight: FontWeight.w700,
             height: 1.43,
             fontFamily: 'Montserrat',
@@ -83,13 +84,13 @@ class NsuCabThemes {
       hintStyle: TextStyle(
         color: NsuCabCommonColors.darkColor,
         fontSize: 12.sp,
-        height: 1.22,
+        height: 0,
         fontWeight: FontWeight.w400,
         fontFamily: 'Montserrat',
       ),
       errorStyle: TextStyle(
         fontSize: 10.sp,
-        height: 1.364,
+        height: 0,
         color: NsuCabCommonColors.redColor,
       ),
       errorBorder: new OutlineInputBorder(
@@ -102,6 +103,7 @@ class NsuCabThemes {
         borderSide: BorderSide.none,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 11.h),
+      isDense: true,
     ),
     textTheme: TextTheme(
       headline1: TextStyle(
@@ -150,7 +152,7 @@ class NsuCabThemes {
       ),
       bodyText1: TextStyle(
         color: Colors.black,
-        fontSize: 13.sp,
+        fontSize: 14.sp,
         height: 1.53,
         fontWeight: FontWeight.w500,
         fontFamily: 'Montserrat',

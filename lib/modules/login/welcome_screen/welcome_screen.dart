@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nsu_cab/global_features/cutom_elevated_button/custom_elevated_button.dart';
 import 'package:nsu_cab/l10n/l10n.dart';
 import 'package:nsu_cab/modules/app/router/router.dart';
 import 'package:nsu_cab/theme/nsu_cab_theme.dart';
@@ -11,6 +12,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final _l10n = context.l10n;
     final _textTheme = Theme.of(context).textTheme;
+    final _buttonTheme = Theme.of(context).elevatedButtonTheme;
 
     return Scaffold(
       body: Stack(
@@ -70,8 +72,9 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 27.h),
                   Container(
+                    // height: 40.h,
+                    width: double.infinity,
                     constraints: BoxConstraints(
-                      maxHeight: 36.h,
                       maxWidth: 197.29.w,
                     ),
                     decoration: BoxDecoration(
@@ -85,20 +88,14 @@ class WelcomeScreen extends StatelessWidget {
                         end: Alignment.topCenter,
                       ),
                     ),
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.pushNamed(
+                    child: CustomElevatedButton(
+                      onTap: () => Navigator.pushNamed(
                         context,
                         Routes.login,
                       ),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.transparent,
-                        ),
-                        overlayColor: MaterialStateProperty.all<Color>(
-                          Colors.transparent,
-                        ),
-                      ),
-                      child: Text(_l10n.enter),
+                      borderRadius: 3.r,
+                      primaryColor: Colors.transparent,
+                      text: _l10n.enter,
                     ),
                   ),
                   SizedBox(height: 22.h),

@@ -8,8 +8,10 @@ import 'package:nsu_cab/modules/login/restore_password_screen/restore_password_s
 import 'package:nsu_cab/modules/login/select_role_screen/select_role_screen.dart';
 import 'package:nsu_cab/modules/login/welcome_screen/welcome_screen.dart';
 import 'package:nsu_cab/services/http_provider/http_provider.dart';
+import 'package:nsu_cab/services/keycloak/keycloak.dart';
+import 'package:nsu_cab/services/keycloak_refresh_token_storage/keycloak_refresh_token_storage.dart';
+import 'package:nsu_cab/services/keycloak_token_storage/keycloak_token_storage.dart';
 import 'package:nsu_cab/services/secure_storage/secure_storage.dart';
-import 'package:nsu_cab/services/token_storage/token_storage.dart';
 
 final sl = GetIt.instance;
 
@@ -42,20 +44,44 @@ void initGetIt() {
   // login module
   sl.registerFactory<LoginCubit>(
     () => LoginCubit(
+      keycloak: sl.get<Keycloak>(),
       navigatorKey: sl.get<GlobalKey<NavigatorState>>(),
     ),
   );
 
   // repositories
 
-  // services
+  // SERVICES
+
+  // dio - http provider
   sl.registerFactory<HttpService>(
-    () => HttpService(iTokenStorage: sl.get<ITokenStorage>()),
+    () => HttpService(
+      keycloak: sl.get<Keycloak>(),
+      keycloakTokenStorage: sl.get<KeycloakTokenStorage>(),
+    ),
   );
-  sl.registerLazySingleton<ITokenStorage>(
-    () => TokenStorage(storage: sl.get<ISecureStorage>()),
+
+  // keycloak
+  sl.registerLazySingleton<Keycloak>(
+    () => Keycloak(
+      keycloakTokenStorage: sl.get<KeycloakTokenStorage>(),
+      keycloakRefreshTokenStorage: sl.get<KeycloakRefreshTokenStorage>(),
+      navigatorKey: sl.get<GlobalKey<NavigatorState>>(),
+    ),
   );
-  sl.registerLazySingleton<ISecureStorage>(() => SecureStorage());
+
+  // local storage services
+  sl.registerLazySingleton<KeycloakTokenStorage>(
+    () => KeycloakTokenStorage(storage: sl.get<SecureStorage>()),
+  );
+  sl.registerLazySingleton<KeycloakRefreshTokenStorage>(
+    () => KeycloakRefreshTokenStorage(storage: sl.get<SecureStorage>()),
+  );
+
+  // local storage
+  sl.registerLazySingleton<SecureStorage>(() => SecureStorage());
+
+  // routing navigator
   sl.registerLazySingleton<GlobalKey<NavigatorState>>(
     () => GlobalKey<NavigatorState>(),
   );

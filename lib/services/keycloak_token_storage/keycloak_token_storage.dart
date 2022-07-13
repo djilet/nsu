@@ -1,17 +1,11 @@
 import 'package:nsu_cab/services/secure_storage/secure_storage.dart';
 
-abstract class ITokenStorage {
-  Future<void> writeToken(String token);
-  Future<void> deleteToken();
-  Future<String?> getToken();
-}
+const ACCESS_TOKEN_KEY = 'accessKeycloakToken';
 
-const ACCESS_TOKEN_KEY = 'accessToken';
+class KeycloakTokenStorage {
+  final SecureStorage storage;
 
-class TokenStorage implements ITokenStorage {
-  final ISecureStorage storage;
-
-  TokenStorage({required this.storage});
+  KeycloakTokenStorage({required this.storage});
 
   @override
   Future<String?> getToken() {

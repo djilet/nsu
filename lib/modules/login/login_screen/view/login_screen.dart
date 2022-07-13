@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsu_cab/common/icons/nsu_cab_icons.dart';
 import 'package:nsu_cab/global_features/custom_back_button/custom_back_button.dart';
+import 'package:nsu_cab/global_features/cutom_elevated_button/custom_elevated_button.dart';
 import 'package:nsu_cab/l10n/l10n.dart';
 import 'package:nsu_cab/modules/app/router/router.dart';
 import 'package:nsu_cab/modules/login/login_screen/cubit/login_cubit.dart';
@@ -140,7 +141,7 @@ class __LoginScreenContentState extends State<_LoginScreenContent> {
           padding: EdgeInsets.only(left: 13.w, bottom: 3.h),
           child: Text(
             _l10n.password,
-            style: _textTheme.caption,
+            style: _textTheme.subtitle2,
             textAlign: TextAlign.center,
           ),
         ),
@@ -152,13 +153,13 @@ class __LoginScreenContentState extends State<_LoginScreenContent> {
           ),
           style: _textTheme.caption,
           obscureText: true,
-          obscuringCharacter: "*",
+          obscuringCharacter: '∗',
           onChanged: _onPassChanged,
         ),
         SizedBox(height: 49.h),
-        ElevatedButton(
-          onPressed: _canPressButton ? _onButtonPressed : null,
-          child: Text(_l10n.enter),
+        CustomElevatedButton(
+          text: _l10n.enter,
+          onTap: _canPressButton ? _onButtonPressed : null,
         ),
         SizedBox(height: 17.h),
         Row(

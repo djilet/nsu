@@ -1,15 +1,7 @@
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class ISecureStorage {
-  Future<void> write<T extends Object>({required String key, required T value});
-  Future<void> delete({required String key});
-  Future<void> deleteAll();
-  Future<T?> read<T extends Object>({required String key});
-  Future<Map<String, dynamic>> readAll();
-}
-
-class SecureStorage implements ISecureStorage {
+class SecureStorage {
   @override
   Future<void> delete({required String key}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

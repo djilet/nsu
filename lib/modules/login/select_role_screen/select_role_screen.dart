@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nsu_cab/common/icons/nsu_cab_icons.dart';
 import 'package:nsu_cab/global_features/custom_back_button/custom_back_button.dart';
+import 'package:nsu_cab/global_features/cutom_elevated_button/custom_elevated_button.dart';
 import 'package:nsu_cab/l10n/l10n.dart';
 import 'package:nsu_cab/theme/nsu_cab_theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,8 +15,6 @@ class SelectRoleScreen extends StatelessWidget {
     final _l10n = context.l10n;
     final _textTheme = Theme.of(context).textTheme;
     final _buttonTheme = Theme.of(context).elevatedButtonTheme;
-
-    final _buttonSize = MaterialStateProperty.all(Size(215.63.w, 24.h));
 
     return Scaffold(
       body: SafeArea(
@@ -44,35 +43,18 @@ class SelectRoleScreen extends StatelessWidget {
               ),
               SizedBox(height: 28.h),
               _RoleCard(
-                button: ElevatedButton(
-                  onPressed: () => {},
-                  child: Text(_l10n.student),
-                  style: _buttonTheme.style?.copyWith(
-                    padding: MaterialStateProperty.all(
-                      EdgeInsets.only(bottom: 4.h),
-                    ),
-                    maximumSize: _buttonSize,
-                    minimumSize: _buttonSize,
-                  ),
+                button: CustomElevatedButton(
+                  onTap: () => {},
+                  text: _l10n.student,
+                  pVertical: 3.25.h,
                 ),
               ),
               _RoleCard(
-                button: ElevatedButton(
-                  onPressed: () => {},
-                  child: Text(_l10n.teacher),
-                  style: _buttonTheme.style?.copyWith(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      NsuCabCommonColors.blueColor,
-                    ),
-                    overlayColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 1, 152, 186),
-                    ),
-                    padding: MaterialStateProperty.all(
-                      EdgeInsets.only(bottom: 4.h),
-                    ),
-                    maximumSize: _buttonSize,
-                    minimumSize: _buttonSize,
-                  ),
+                button: CustomElevatedButton(
+                  onTap: () => {},
+                  text: _l10n.teacher,
+                  primaryColor: NsuCabCommonColors.blueColor,
+                  pVertical: 3.25.h,
                 ),
               ),
             ],
@@ -114,7 +96,10 @@ class _RoleCard extends StatelessWidget {
             color: NsuCabLightColors.darkColor1,
           ),
           SizedBox(height: 28.81.h),
-          button,
+          Container(
+            constraints: BoxConstraints(maxWidth: 215.w),
+            child: button,
+          ),
           SizedBox(height: 36.h),
         ],
       ),

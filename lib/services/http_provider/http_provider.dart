@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:nsu_cab/services/token_storage/token_storage.dart';
+import 'package:nsu_cab/services/keycloak/keycloak.dart';
+import 'package:nsu_cab/services/keycloak_token_storage/keycloak_token_storage.dart';
 
 enum HttpMethod { POST, GET, PUT, DELETE }
 
@@ -8,9 +9,13 @@ const BASE_URL = "https://rickandmortyapi.com/api/";
 class HttpService {
   Dio? _dio;
 
-  final ITokenStorage iTokenStorage;
+  final Keycloak keycloak;
+  final KeycloakTokenStorage keycloakTokenStorage;
 
-  HttpService({required this.iTokenStorage}) : super() {
+  HttpService({
+    required this.keycloak,
+    required this.keycloakTokenStorage,
+  }) : super() {
     _dio = Dio(
       BaseOptions(
         baseUrl: BASE_URL,
@@ -20,8 +25,7 @@ class HttpService {
     _dio!.interceptors.add(
       InterceptorsWrapper(
         onRequest: (requestOptions, handler) async {
-          await iTokenStorage.writeToken(DateTime.now().toString());
-          final token = await iTokenStorage.getToken() ?? '';
+          final token = await keycloakTokenStorage.getToken() ?? '';
 
           print(token);
 
@@ -29,8 +33,9 @@ class HttpService {
 
           return handler.next(requestOptions);
         },
-        onError: (err, handler) {
+        onError: (err, handler) async {
           if (err.response?.statusCode == 401) {
+            await keycloak.updateTokens();
             _retry(err.requestOptions);
           }
           return handler.next(err);
@@ -73,9 +78,11 @@ class HttpService {
       method: requestOptions.method,
       headers: requestOptions.headers,
     );
-    return _dio!.request<dynamic>(requestOptions.path,
-        data: requestOptions.data,
-        queryParameters: requestOptions.queryParameters,
-        options: options);
+    return _dio!.request<dynamic>(
+      requestOptions.path,
+      data: requestOptions.data,
+      queryParameters: requestOptions.queryParameters,
+      options: options,
+    );
   }
 }
