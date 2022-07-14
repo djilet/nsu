@@ -6,6 +6,13 @@ class NsuCabIcons {
   static const String nsuStar = 'assets/images/svgs/nsu_star.svg';
   static const String owl = 'assets/images/svgs/owl.svg';
 
+  // menu
+  static const String menuHome = 'assets/images/svgs/menu/home.svg';
+  static const String menuTimetable = 'assets/images/svgs/menu/timetable.svg';
+  static const String menuDeanoffice = 'assets/images/svgs/menu/deanoffice.svg';
+  static const String menuMessages = 'assets/images/svgs/menu/messages.svg';
+  static const String menuServices = 'assets/images/svgs/menu/services.svg';
+
   // emoji
   static const String viva = 'assets/images/emoji/viva.png';
   static const String fingerDown = 'assets/images/emoji/finger_down.png';

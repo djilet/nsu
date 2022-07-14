@@ -24,6 +24,7 @@ class NsuCabLightColors {
   static const Color darkColor2 = Color(0xFF5D5D5D);
   static const Color greenColor = Color(0xFF72C81E);
   static const Color lightColor = Color(0xFFEEF2FA);
+  static const Color blueColor = Color(0xFF00BDE8);
 
   // box shadow
   static const Color shadow1 = Color.fromARGB(16, 18, 46, 101);
@@ -32,8 +33,9 @@ class NsuCabLightColors {
 class NsuCabDarkColors {
   static const Color darkColor1 = Color(0xFF121212);
   static const Color darkColor2 = Color(0xFF202022);
-  static const Color darkColor3 = Color(0xFF3B9700);
-  static const Color greenColor = Color(0xFF2C2C2E);
+  static const Color greenColor = Color(0xFF3B9700);
+  static const Color greenColor3 = Color(0xFF2C2C2E);
+  static const Color blueColor = Color(0xFF1D9FE0);
 }
 
 class NsuCabThemes {

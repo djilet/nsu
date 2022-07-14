@@ -12,7 +12,6 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final _l10n = context.l10n;
     final _textTheme = Theme.of(context).textTheme;
-    final _buttonTheme = Theme.of(context).elevatedButtonTheme;
 
     return Scaffold(
       body: Stack(

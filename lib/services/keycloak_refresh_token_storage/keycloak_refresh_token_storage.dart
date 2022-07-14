@@ -7,17 +7,14 @@ class KeycloakRefreshTokenStorage {
 
   KeycloakRefreshTokenStorage({required this.storage});
 
-  @override
   Future<String?> getToken() {
     return storage.read<String>(key: REFRESH_TOKEN_KEY);
   }
 
-  @override
   Future<void> writeToken(String token) {
     return storage.write<String>(key: REFRESH_TOKEN_KEY, value: token);
   }
 
-  @override
   Future<void> deleteToken() {
     return storage.delete(key: REFRESH_TOKEN_KEY);
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nsu_cab/global_cubits/current_user/current_user_cubit.dart';
 import 'package:nsu_cab/l10n/l10n.dart';
 import 'package:nsu_cab/locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +13,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CurrentUserCubit _currentUserCubit = sl.get<CurrentUserCubit>();
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -29,15 +33,22 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          themeMode: ThemeMode.light,
-          theme: NsuCabThemes.lightTheme,
-          darkTheme: NsuCabThemes.darkTheme,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          navigatorKey: sl.get<GlobalKey<NavigatorState>>(),
-          routes: sl<Map<String, WidgetBuilder>>(),
-          initialRoute: Routes.welcome,
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<CurrentUserCubit>(
+              create: (_) => _currentUserCubit,
+            ),
+          ],
+          child: MaterialApp(
+            themeMode: ThemeMode.light,
+            theme: NsuCabThemes.lightTheme,
+            darkTheme: NsuCabThemes.darkTheme,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            navigatorKey: sl.get<GlobalKey<NavigatorState>>(),
+            routes: sl<Map<String, WidgetBuilder>>(),
+            initialRoute: Routes.welcome,
+          ),
         );
       },
     );

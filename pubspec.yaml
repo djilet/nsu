@@ -8,6 +8,7 @@ environment:
   flutter: 3.0.4
 
 dependencies:
+  badges: ^2.0.3
   bloc: ^8.0.3
   cached_network_image: ^3.2.1
   dio: ^4.0.6
@@ -42,8 +43,9 @@ flutter:
     - .env
     - assets/
     - assets/images/
-    - assets/images/svgs/
     - assets/images/emoji/
+    - assets/images/svgs/
+    - assets/images/svgs/menu/
 
   fonts:
     - family: Montserrat

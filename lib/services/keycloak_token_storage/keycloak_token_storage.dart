@@ -7,17 +7,14 @@ class KeycloakTokenStorage {
 
   KeycloakTokenStorage({required this.storage});
 
-  @override
   Future<String?> getToken() {
     return storage.read<String>(key: ACCESS_TOKEN_KEY);
   }
 
-  @override
   Future<void> writeToken(String token) {
     return storage.write<String>(key: ACCESS_TOKEN_KEY, value: token);
   }
 
-  @override
   Future<void> deleteToken() {
     return storage.delete(key: ACCESS_TOKEN_KEY);
   }

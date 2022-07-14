@@ -2,19 +2,16 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SecureStorage {
-  @override
   Future<void> delete({required String key}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
   }
 
-  @override
   Future<void> deleteAll() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
   }
 
-  @override
   Future<T?> read<T extends Object>({required String key}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -41,7 +38,6 @@ class SecureStorage {
     throw ArgumentError('Type $T not allowed', 'value');
   }
 
-  @override
   Future<Map<String, dynamic>> readAll() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Set<String> keys = prefs.getKeys();
@@ -54,7 +50,6 @@ class SecureStorage {
     return prefsMap;
   }
 
-  @override
   Future<void> write<T extends Object>({
     required String key,
     required T value,

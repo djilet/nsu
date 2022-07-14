@@ -170,6 +170,7 @@ class __LoginScreenContentState extends State<_LoginScreenContent> {
                 _l10n.loginScreenRestorePassword,
                 style: _textTheme.button?.copyWith(
                   color: NsuCabLightColors.darkColor2,
+                  fontSize: 13.sm,
                 ),
               ),
             ),
@@ -180,6 +181,7 @@ class __LoginScreenContentState extends State<_LoginScreenContent> {
                 _l10n.loginScreenHaveNoAccount,
                 style: _textTheme.button?.copyWith(
                   color: NsuCabLightColors.darkColor2,
+                  fontSize: 13.sm,
                 ),
               ),
             ),

@@ -42,7 +42,7 @@ class Keycloak {
       // );
     } else {
       navigatorKey.currentState!.pushNamedAndRemoveUntil(
-        Routes.login,
+        Routes.welcome,
         (route) => false,
       );
     }
@@ -75,7 +75,7 @@ class Keycloak {
       // );
     } else {
       navigatorKey.currentState!.pushNamedAndRemoveUntil(
-        Routes.login,
+        Routes.welcome,
         (route) => false,
       );
     }
